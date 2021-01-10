@@ -4,7 +4,7 @@
 
 1. Clone the repository locally.
 2. Import it in a Java IDE (e.g. Intellij Idea).
-3. Add environment variables "DbUser" and "DbPassword" in the IDE with your corresponding ones. 
+3. Add environment variables "DbUser" and "DbPassword" in the IDE with your corresponding values. 
 3. Run the application.
 4. Navigate to src/main/resources/static and open the index.html file in a browser (e.g. Chrome). 
 5. Adjust the sliders to the desired values and you can see the resulting color.
