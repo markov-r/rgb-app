@@ -15,7 +15,7 @@ Front-end receives the values (that were already sent by him, haha) and displays
 Communication b/w BE and FE is carried over Websocket.
 
 ### How it looks
-![Result Slider](docs/task1.PNG) 
+![Result Slider](static/task1.PNG) 
 
 ### Technologies used
 Spring WebFlux, JPA/Hibernate, PostgreSQL, Websocket
