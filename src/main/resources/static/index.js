@@ -1,11 +1,12 @@
-console.log('Test for running app successful!');
-console.log('Host name: ', document.location.hostname );
-console.log('Protocol : ', document.location.protocol );
+// console.log('Test for running app successful!');
+// console.log('Host name: ', document.location.hostname );
+// console.log('Protocol : ', document.location.protocol );
 
 // const url = 'ws' + "://" + document.location.hostname + ":8080";
-const url = 'ws://localhost:8080/rgb';
+const url = 'ws://localhost:8080/rgb/app';
 
 let socket = new WebSocket(url);
+console.log('socket: ', socket);
 
 const redSlider = document.getElementById("red");
 const greenSlider = document.getElementById("green");
@@ -37,9 +38,9 @@ function updateValue(e) {
         red: redSlider.value,
         green: greenSlider.value,
         blue: blueSlider.value
-    }
-    
-    socket.send(payload);
+    };
+    console.log('Payload', payload);
+    socket.send(JSON.stringify(payload));
 
     // square.style.backgroundColor = `rgb(${redSlider.value}, ${
     //     greenSlider.value
@@ -67,7 +68,7 @@ function updateValue(e) {
 // handle incoming messages
 socket.onmessage = function (event) {
     let colorValues = event.data;
-    consol.log(colorValues)
+    console.log(colorValues)
     updateSquareColor(JSON.parse(colorValues));
 };
 

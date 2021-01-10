@@ -3,6 +3,8 @@ package com.rgb.application.config;
 import com.rgb.application.handler.RgbHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.reactive.socket.WebSocketHandler;
@@ -14,8 +16,9 @@ import org.springframework.web.reactive.socket.server.upgrade.ReactorNettyReques
 import java.util.HashMap;
 import java.util.Map;
 
+@Configuration
 public class WebSocketConfiguration {
-    public static final String RGB_URL = "/rgb";
+    public static final String RGB_URL = "/rgb/app";
 
     @Autowired
     RgbHandler rgbHandler;
@@ -23,10 +26,10 @@ public class WebSocketConfiguration {
     @Bean
     public HandlerMapping handlerMapping() {
         Map<String, WebSocketHandler> map = new HashMap<>();
-        map.put(RGB_URL, rgbHandler);
+        map.put("/rgb/app", rgbHandler);
         SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
         mapping.setUrlMap(map);
-//        mapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        mapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return mapping;
     }
 

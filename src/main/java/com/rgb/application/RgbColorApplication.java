@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ColorApplication {
+public class RgbColorApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(ColorApplication.class, args);
+		SpringApplication.run(RgbColorApplication.class, args);
 	}
 }
