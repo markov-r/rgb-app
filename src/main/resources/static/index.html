@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="styles.css">
+    <title>RGB Color Picker</title>
+</head>
+
+<body>
+    
+    <h2 class="header-text">Pick a color:</h2>
+    <div class="container">
+        <div>
+            <div class="slider-container">
+                <div>
+                    <input type="range" id="red" class="slider" name="red" min="0" max="255" value="10" step="1">
+                    <label for="Red">R</label>
+                </div>
+                <p id="redLog">10</p>
+            </div>
+            
+            <div class="slider-container">
+                <div>
+                    <input type="range" id="green" class="slider" name="green" min="0" max="255" value="10" step="1">
+                    <label for="Green">G</label>
+                </div>
+                <p id="greenLog">10</p>
+            </div>
+            
+            <div class="slider-container">
+                <div>
+                    <input type="range" id="blue" class="slider" name="blue" min="0" max="255" value="10" step="1">
+                    <label for="Blue">B</label>
+                </div>
+                <p id="blueLog">10</p>
+            </div>
+        </div>
+
+        <div>
+            <div id="result-color" class="square">        
+            </div>
+            <div id="result-text" class="square-text">
+            </div>
+        </div>
+        
+    </div>  
+
+    <script type="module" src="index.js"></script>
+    </div>
+</body>
+
+</html>

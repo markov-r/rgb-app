@@ -1,0 +1,11 @@
+{
+  "name": "rgb-color-picker",
+  "version": "1.0.0",
+  "description": "'App for picking color from rgb sliders and updating the result through web sockets'",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Radoslav Markov",
+  "license": "ISC"
+}
