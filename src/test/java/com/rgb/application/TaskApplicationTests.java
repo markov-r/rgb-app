@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 class TaskApplicationTests {
 
     private static final String RGB_WS_URL = "ws://localhost:8080/rgb/app";
+    private static final String JSON_STUB = "{\"red\":\"131\",\"green\":\"0\",\"blue\":\"0\"}";
 
     @Test
     public void testNotificationsOnUpdates() throws InterruptedException {
@@ -26,7 +27,7 @@ class TaskApplicationTests {
         WebSocketClient webClient = new ReactorNettyWebSocketClient();
         webClient.execute(uri, (WebSocketSession session) -> {
             Mono<WebSocketMessage> outgoing = Mono.just(session.textMessage(
-                    "{\"red\":\"131\",\"green\":\"0\",\"blue\":\"0\"}"));
+                    JSON_STUB));
             Flux<String> incoming = session
                     .receive()
                     .map(WebSocketMessage::getPayloadAsText);
