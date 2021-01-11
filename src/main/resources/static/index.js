@@ -1,81 +1,53 @@
-// console.log('Test for running app successful!');
-// console.log('Host name: ', document.location.hostname );
-// console.log('Protocol : ', document.location.protocol );
-
-// const url = 'ws' + "://" + document.location.hostname + ":8080";
 const url = 'ws://localhost:8080/rgb/app';
-
 let socket = new WebSocket(url);
-console.log('socket: ', socket);
 
-const redSlider = document.getElementById("red");
-const greenSlider = document.getElementById("green");
-const blueSlider = document.getElementById("blue");
+socket.onmessage = function (event) {
+    updateSquareColor(JSON.parse(event.data));
+};
 
-const redLog = document.getElementById("redLog");
-const greenLog = document.getElementById("greenLog");
-const blueLog = document.getElementById("blueLog");
+socket.onclose = event => console.log(`Closed ${event.code}`);
 
-const square = document.getElementById("result-color");
-const rgbResultText = document.getElementById("result-text");
+const redSlider = selectElement("#red");
+const greenSlider = selectElement("#green");
+const blueSlider = selectElement("#blue");
 
-redSlider.addEventListener("change", updateValue);
-greenSlider.addEventListener("change", updateValue);
-blueSlider.addEventListener("change", updateValue);
+listenForChange(redSlider);
+listenForChange(greenSlider);
+listenForChange(blueSlider);
+
+function listenForChange(element) {
+    element.addEventListener("change", updateValue);
+}
 
 function updateValue(e) {
-
-    console.log("red: ", redSlider.value);
-    console.log("green: ", greenSlider.value);
-    console.log("blue: ", blueSlider.value);
-
-    redLog.textContent = redSlider.value;
-    greenLog.textContent = greenSlider.value;
-    blueLog.textContent = blueSlider.value;
-
+    updateSliderLoggerValues();
 
     const payload = {
         red: redSlider.value,
         green: greenSlider.value,
         blue: blueSlider.value
     };
-    console.log('Payload', payload);
     socket.send(JSON.stringify(payload));
-
-    // square.style.backgroundColor = `rgb(${redSlider.value}, ${
-    //     greenSlider.value
-    //     }, ${blueSlider.value})`;
-    
-    // rgbResultText.textContent = `RGB color: (${redSlider.value}, ${
-    //     greenSlider.value
-    //     }, ${blueSlider.value})`
 }
 
-// let url = location.host == 'localhost' ?
-//     'ws://localhost:8080/ws' : location.host == 'javascript.local' ?
-//         `ws://javascript.local/article/websocket/chat/ws` : // dev integration with local site
-//         `wss://javascript.info/article/websocket/chat/ws`; // prod integration with javascript.info
+function updateSliderLoggerValues() {
+    const redLog = selectElement(".redLog");
+    const greenLog = selectElement(".greenLog");
+    const blueLog = selectElement(".blueLog");
 
+    redLog.textContent = redSlider.value;
+    greenLog.textContent = greenSlider.value;
+    blueLog.textContent = blueSlider.value;
+}
 
-// send message from the form
-// document.forms.publish.onsubmit = function () {
-//     let outgoingMessage = this.message.value;
+function selectElement(selector) {
+    return document.querySelector(selector);
+}
 
-//     socket.send(outgoingMessage);
-//     return false;
-// };
-
-// handle incoming messages
-socket.onmessage = function (event) {
-    let colorValues = event.data;
-    console.log(colorValues)
-    updateSquareColor(JSON.parse(colorValues));
-};
-
-socket.onclose = event => console.log(`Closed ${event.code}`);
-
-// show message in div#messages
 function updateSquareColor(colorValues) {
+    const square = selectElement(".square");
+    const rgbResultText = selectElement(".square-text");
+
     square.style.backgroundColor = `rgb(${colorValues.red}, ${
         colorValues.green
         }, ${colorValues.blue})`;
