@@ -8,9 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Getter @Setter
+@Data
 @AllArgsConstructor @NoArgsConstructor
-@ToString @EqualsAndHashCode
 public class Rgb {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

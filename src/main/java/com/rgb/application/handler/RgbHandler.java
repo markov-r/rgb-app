@@ -25,7 +25,6 @@ public class RgbHandler implements WebSocketHandler {
         return session.send(
                 session.receive()
                        .map(data -> data.getPayloadAsText())
-//                       .map(WebSocketMessage::getPayloadAsText)
                        .map(json -> service.parseJson(json))
                        .map(rgb -> service.save(rgb))
                        .map(rgb -> service.createJson(rgb))
